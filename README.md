@@ -19,11 +19,5 @@ This assumes your runner has access to the required AWS resources.
     sqs-url: https://sqs.ap-southeast-2.amazonaws.com/<account-id>/<queue-name>
     message: "Hello World"
     message-group-id: "12345"
-    message-attributes:
-      key1:
-       stringValue: "value1"
-       dataType: "String"
-      key2:
-       stringValue: "value2"
-       dataType: "String"
+    # message-attributes: '{"key1": {"DataType": "String", "StringValue": ${{ inputs.message-group-id }} }}'
 ```
