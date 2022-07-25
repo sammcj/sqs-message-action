@@ -6,7 +6,7 @@ async function run() {
     const sqsUrl = core.getInput('sqs-url', { required: true });
     const message = core.getInput('message', { required: true });
     const messageGroupId = core.getInput('message-group-id', { required: false });
-    const messageAttributes = core.getInput('message-attributes', { required: false });
+    const messageAttributes = core.getInput('message-attributes', { required: true });
 
     const params = {
       QueueUrl: sqsUrl,
@@ -14,7 +14,9 @@ async function run() {
       MessageGroupId: messageGroupId,
     }
 
-    if (messageAttributes !== typeof 'undefined') {
+    console.log(`value of messageAttributes: ${messageAttributes}`);
+
+    if (messageAttributes !== 'undefined') {
       params.MessageAttributes = JSON.parse(messageAttributes);
     }
 
