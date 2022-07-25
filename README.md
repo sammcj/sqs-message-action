@@ -7,7 +7,7 @@ This action will publish a message to an AWS SQS queue.
 - `sqs-url` - The URL of the SQS queue to publish to (required).
 - `message` - The message to publish (required).
 - `message-group-id` - The message group ID to publish to (optional).
-- `message-attributes` - The message attributes to publish in JSON (optional).
+<!-- - `message-attributes` - The message attributes to publish in JSON (optional). -->
 
 ## Usage
 
@@ -19,11 +19,13 @@ This assumes your runner has access to the required AWS resources.
     sqs-url: https://sqs.ap-southeast-2.amazonaws.com/<path>
     message: "Hello World"
     message-group-id: "12345"
-    message-attributes:
-      key1:
-        DataType: "String"
-        StringValue: "value1"
-      key2:
-        DataType: "Number"
-        StringValue: "6"
+    # message-attributes: toJSON(
+    #     "key1": {
+    #       "DataType": "String",
+    #       "StringValue": "value1"
+    #     },
+    #     "key2": {
+    #       "DataType": "Number",
+    #       "StringValue": "6"
+    #     })
 ```
