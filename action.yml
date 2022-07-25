@@ -1,0 +1,15 @@
+name: "Send SQS Message"
+description: "Send a message to an AWS SQS queue"
+branding:
+  icon: "send"
+  color: "orange"
+inputs:
+  sqs-url:
+    description: "SQS URL"
+    required: true
+  message:
+    description: "SQS Message Body"
+    required: true
+runs:
+  using: "node16"
+  main: "index.js"
