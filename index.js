@@ -12,7 +12,7 @@ async function run() {
       QueueUrl: sqsUrl,
       MessageBody: message,
       MessageGroupId: messageGroupId,
-      MessageAttributes: (typeof messageAttributes === 'undefined') ? undefined : messageAttributes,
+      MessageAttributes: (typeof messageAttributes === 'undefined') ? undefined : JSON.stringify(Object.fromEntries(messageAttributes)),
     }
 
     const sqs = new aws.SQS();

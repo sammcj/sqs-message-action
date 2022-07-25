@@ -5,17 +5,21 @@ branding:
   color: "orange"
 inputs:
   sqs-url:
-    description: "SQS URL (String)"
+    description: "SQS URL"
     required: true
+    type: string
   message:
-    description: "SQS Message Body (String)"
+    description: "SQS Message Body"
     required: true
+    type: string
   message-attributes:
-    description: "SQS Message Attributes (JSON)"
+    description: "SQS Message Attributes"
     required: false
+    type: map
   message-group-id:
-    description: "SQS Message Group ID (Integer)"
+    description: "SQS Message Group ID"
     required: false
+    type: string
 runs:
   using: "node16"
   main: "index.js"
