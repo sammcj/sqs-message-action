@@ -2,14 +2,27 @@ name: Bump version
 on:
   push:
     branches:
-      - master
+      - main
+  workflow_dispatch:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - name: Bump version and push tag
-        uses: laputansoft/github-tag-action@v4.6
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.0
         with:
-          github_token: ${{ env.github-token }}
-          tag: ${{ steps.package-version.outputs.version }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
