@@ -5,11 +5,14 @@ branding:
   color: "orange"
 inputs:
   sqs-url:
-    description: "SQS URL"
+    description: "SQS URL (String)"
     required: true
   message:
-    description: "SQS Message Body"
+    description: "SQS Message Body (String)"
     required: true
+  message-attributes:
+    description: "SQS Message Attributes (Map)"
+    required: false
 runs:
   using: "node16"
   main: "index.js"
