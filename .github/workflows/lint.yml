@@ -23,3 +23,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           reporter: github-pr-review
+          github_token: ${{ secrets.GITHUB_TOKEN }}
