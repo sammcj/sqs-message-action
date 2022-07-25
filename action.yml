@@ -11,7 +11,7 @@ inputs:
     description: "SQS Message Body (String)"
     required: true
   message-attributes:
-    description: "SQS Message Attributes (JSON)"
+    description: "SQS Message Attributes (Map)"
     required: false
 runs:
   using: "node16"
