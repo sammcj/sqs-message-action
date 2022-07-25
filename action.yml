@@ -1,4 +1,4 @@
-name: "AWS SQS"
+name: "Send SQS Message"
 description: "Send a message to an AWS SQS queue"
 branding:
   icon: "send"
