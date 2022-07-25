@@ -6,7 +6,7 @@ async function run() {
     const sqsUrl = core.getInput('sqs-url', { required: true });
     const message = core.getInput('message', { required: true });
     const messageGroupId = core.getInput('message-group-id', { required: false });
-    const messageAttributes = core.getInput('message-attributes', { required: true });
+    const messageAttributes = core.getInput('message-attributes', { required: false });
 
     const params = {
       QueueUrl: sqsUrl,
