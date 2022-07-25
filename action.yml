@@ -11,7 +11,10 @@ inputs:
     description: "SQS Message Body (String)"
     required: true
   message-attributes:
-    description: "SQS Message Attributes (Map)"
+    description: "SQS Message Attributes (JSON)"
+    required: false
+  message-group-id:
+    description: "SQS Message Group ID (Integer)"
     required: false
 runs:
   using: "node16"

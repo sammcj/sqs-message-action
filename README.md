@@ -16,16 +16,8 @@ This assumes your runner has access to the required AWS resources.
 ```yaml
 - uses: sammcj/sqs-message-action@main
   with:
-    sqs-url: https://sqs.ap-southeast-2.amazonaws.com/<path>
+    sqs-url: https://sqs.ap-southeast-2.amazonaws.com/<account-id>/<queue-name>
     message: "Hello World"
     message-group-id: "12345"
-    # message-attributes: toJSON(
-    #     "key1": {
-    #       "DataType": "String",
-    #       "StringValue": "value1"
-    #     },
-    #     "key2": {
-    #       "DataType": "Number",
-    #       "StringValue": "6"
-    #     })
+    message-attributes: {"key1": {"stringValue": "value1", "dataType": "String"}, "key2": {"stringValue": "value2", "dataType": "String"}}
 ```
