@@ -17,7 +17,7 @@ async function run() {
     console.log(`value of messageAttributes: ${messageAttributes}`);
 
     if (messageAttributes) {
-      params.MessageAttributes = messageAttributes;
+      params.MessageAttributes = JSON.parse(messageAttributes);
     }
 
     const sqs = new aws.SQS();
