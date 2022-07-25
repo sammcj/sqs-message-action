@@ -5,9 +5,12 @@ async function run() {
   try {
     const sqsUrl = core.getInput('sqs-url', { required: true });
     const message = core.getInput('message', { required: true });
+    const MessageAttributes = core.getInput('message-attributes', { required: false });
+
     const params = {
       QueueUrl: sqsUrl,
       MessageBody: message,
+      MessageAttributes: MessageAttributes,
     };
 
     const sqs = new aws.SQS();
