@@ -6,13 +6,16 @@ async function run() {
     const sqsUrl = core.getInput('sqs-url', { required: true });
     const message = core.getInput('message', { required: true });
     const messageGroupId = core.getInput('message-group-id', { required: false });
-    const messageAttributes = (core.getInput('message-attributes', { required: false }) === 'undefined') ? undefined : messageAttributes
+    const messageAttributes = core.getInput('message-attributes', { required: false });
 
     const params = {
       QueueUrl: sqsUrl,
       MessageBody: message,
       MessageGroupId: messageGroupId,
-      MessageAttributes: messageAttributes,
+    }
+
+    if (messageAttributes !== typeof 'undefined') {
+      params.MessageAttributes = JSON.parse(messageAttributes);
     }
 
     const sqs = new aws.SQS();
