@@ -15,6 +15,7 @@ inputs:
   message-attributes:
     description: "SQS Message Attributes"
     required: false
+    type: map
   message-group-id:
     description: "SQS Message Group ID"
     required: false
