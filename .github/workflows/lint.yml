@@ -7,6 +7,10 @@ on:
       - reopened
       - synchronize
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - dev
 
 jobs:
   actionlint:
