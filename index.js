@@ -1,14 +1,14 @@
-const core = require('@actions/core');
-const aws = require('aws-sdk');
+const core = require('@actions/core')
+const aws = require('aws-sdk')
 
 // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SQS.html
 
 async function run() {
   try {
-    const sqsUrl = core.getInput('sqs-url', { required: true });
-    const message = core.getInput('message', { required: true });
-    const messageGroupId = core.getInput('message-group-id', { required: false });
-    const messageAttributes = core.getInput('message-attributes', { required: false });
+    const sqsUrl = core.getInput('sqs-url', { required: true })
+    const message = core.getInput('message', { required: true })
+    const messageGroupId = core.getInput('message-group-id', { required: false })
+    const messageAttributes = core.getInput('message-attributes', { required: false })
 
     const params = {
       QueueUrl: sqsUrl,
@@ -17,25 +17,25 @@ async function run() {
     }
 
     if (messageAttributes) {
-      params.MessageAttributes = JSON.parse(messageAttributes);
+      params.MessageAttributes = JSON.parse(messageAttributes)
     }
 
-    const sqs = new aws.SQS();
+    const sqs = new aws.SQS()
     sqs.sendMessage(params, (err, resp) => {
       if (err) {
-        throw err;
+        throw err
       } else {
-        console.log(`resp ${JSON.stringify(resp, null, 2)}`);
+        console.log(`resp ${JSON.stringify(resp, null, 2)}`)
       }
     })
   } catch (error) {
-    core.setFailed(error.message);
+    core.setFailed(error.message)
   }
 }
 
-module.exports = run;
+module.exports = run
 
 /* istanbul ignore next */
 if (require.main === module) {
-  run();
+  run()
 }

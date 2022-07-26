@@ -1,7 +1,5 @@
 {
-  "extends": [
-    "config:base"
-  ],
+  "extends": ["config:base"],
   "commitMessagePrefix": "Hotfix-0000/00/00 --",
   "packageRules": [
     {
