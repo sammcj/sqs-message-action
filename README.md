@@ -2,6 +2,8 @@
 
 This action will publish a message to an AWS SQS queue.
 
+[![GitHub Super-Linter](https://github.com/sammcj/sqs-message-action/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 ## Inputs
 
 - `sqs-url` - The URL of the SQS queue to publish to (required).
@@ -29,7 +31,7 @@ on:
     message-attributes: '{"key1": {"DataType": "String", "StringValue": "value1" }}'
 ```
 
-### Using workflow_dispatch to take input from the user:
+### Using workflow_dispatch to take input from the user
 
 ```yaml
 name: Send an SQS Message
@@ -37,8 +39,8 @@ on:
   workflow_dispatch:
     inputs:
       sqs-url:
-        description: "e.g. https://sqs.ap-southeast-2.amazonaws.com/<AWS ID>/<queue-name>.fifo"
-        default: "https://sqs.ap-southeast-2.amazonaws.com/1234567890/my-sqs-queue.fifo"
+        description: 'e.g. https://sqs.ap-southeast-2.amazonaws.com/<AWS ID>/<queue-name>.fifo'
+        default: 'https://sqs.ap-southeast-2.amazonaws.com/1234567890/my-sqs-queue.fifo'
         required: true
         type: string
       message:
