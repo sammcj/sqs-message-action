@@ -45,3 +45,4 @@ jobs:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JAVASCRIPT_DEFAULT_STYLE: prettier
+          FILTER_REGEX_EXCLUDE: .*node_modules/.*
