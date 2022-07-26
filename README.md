@@ -47,7 +47,7 @@ on:
         type: string
       message-group-id:
         description: 'e.g. "12345" - only required for fifo queues'
-        default: "1337"
+        default: '"1337"'
         required: false
         type: string
 
