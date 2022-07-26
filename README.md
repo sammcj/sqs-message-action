@@ -2,8 +2,6 @@
 
 This action will publish a message to an AWS SQS queue.
 
-[![GitHub Super-Linter](https://github.com/sammcj/sqs-message-action/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
-
 ## Inputs
 
 - `sqs-url` - The URL of the SQS queue to publish to (required).
