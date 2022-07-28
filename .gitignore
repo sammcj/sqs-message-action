@@ -18,3 +18,5 @@ Session.vim
 
 # git mu-repo
 .mu_repo
+
+megalinter-reports/
