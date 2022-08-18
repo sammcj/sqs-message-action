@@ -30,7 +30,7 @@
     "esprima": "4.0.1"
   },
   "dependencies": {
-    "@actions/core": "1.9.0",
+    "@actions/core": "1.9.1",
     "aws-sdk": "2.1181.0"
   }
 }
