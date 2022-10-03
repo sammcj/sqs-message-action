@@ -33,7 +33,7 @@ jobs:
       # Test
       - uses: ./
         with:
-          head: 'origin/dev'
+          head: "origin/dev"
           feature: ${{ github.head_ref }}
           path: src/main/resources/db/migration
           similarity: 50
