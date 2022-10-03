@@ -62,3 +62,10 @@ jobs:
           message-group-id: ${{ inputs.message-group-id }}
           message-attributes: ${{ inputs.message-attributes }}
 ```
+
+## Contributing
+
+Contributions are welcome!
+
+Please make sure you have run an `npm ci && npm run lint && npm run test` before submitting a PR.
+If you have [pre-commit](https://pre-commit.com/) installed, it will run these commands for you on commit.

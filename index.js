@@ -10,17 +10,32 @@ async function run() {
     const messageGroupId = core.getInput('message-group-id', { required: false })
     const messageAttributes = core.getInput('message-attributes', { required: false })
 
+    if (message === '') {
+      throw new Error('Message cannot be an empty string')
+    }
+
+    // If any of the required inputs are missing or an empty string, throw an error
+    if (sqsUrl === '' || message === '') {
+      console.log(`sqsUrl: ${sqsUrl}, message: ${message}`)
+      throw new Error('You must provide at least a valid SQS URL and a message')
+    }
+
+    // Construct the parameters
     const params = {
       QueueUrl: sqsUrl,
       MessageBody: message,
       MessageGroupId: messageGroupId,
     }
 
+    // If message attributes are provided, add them to the params object
     if (messageAttributes) {
       params.MessageAttributes = JSON.parse(messageAttributes)
     }
 
+    // Create a new SQS service object
     const sqs = new aws.SQS()
+
+    // Send the message to the queue and log the response
     sqs.sendMessage(params, (err, resp) => {
       if (err) {
         throw err
