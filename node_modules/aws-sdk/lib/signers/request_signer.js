@@ -27,7 +27,6 @@ AWS.Signers.RequestSigner.getVersion = function getVersion(version) {
     case 'v4': return AWS.Signers.V4;
     case 's3': return AWS.Signers.S3;
     case 'v3https': return AWS.Signers.V3Https;
-    case 'bearer': return AWS.Signers.Bearer;
   }
   throw new Error('Unknown signing version ' + version);
 };
@@ -38,4 +37,3 @@ require('./v3https');
 require('./v4');
 require('./s3');
 require('./presign');
-require('./bearer');

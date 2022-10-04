@@ -4,18 +4,6 @@ var Json = require('./json');
 var JsonBuilder = require('../json/builder');
 var JsonParser = require('../json/parser');
 
-var METHODS_WITHOUT_BODY = ['GET', 'HEAD', 'DELETE'];
-
-function unsetContentLength(req) {
-  var payloadMember = util.getRequestPayloadShape(req);
-  if (
-    payloadMember === undefined &&
-    METHODS_WITHOUT_BODY.indexOf(req.httpRequest.method) >= 0
-  ) {
-    delete req.httpRequest.headers['Content-Length'];
-  }
-}
-
 function populateBody(req) {
   var builder = new JsonBuilder();
   var input = req.service.api.operations[req.operation].input;
@@ -52,7 +40,7 @@ function buildRequest(req) {
   Rest.buildRequest(req);
 
   // never send body payload on GET/HEAD/DELETE
-  if (METHODS_WITHOUT_BODY.indexOf(req.httpRequest.method) < 0) {
+  if (['GET', 'HEAD', 'DELETE'].indexOf(req.httpRequest.method) < 0) {
     populateBody(req);
   }
 }
@@ -101,6 +89,5 @@ function extractData(resp) {
 module.exports = {
   buildRequest: buildRequest,
   extractError: extractError,
-  extractData: extractData,
-  unsetContentLength: unsetContentLength
+  extractData: extractData
 };

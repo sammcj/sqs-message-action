@@ -499,8 +499,6 @@ AWS.Service = inherit({
       version = this.config.signatureVersion;
     } else if (authtype === 'v4' || authtype === 'v4-unsigned-body') {
       version = 'v4';
-    } else if (authtype === 'bearer') {
-      version = 'bearer';
     } else {
       version = this.api.signatureVersion;
     }
