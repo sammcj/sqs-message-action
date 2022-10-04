@@ -1,16 +1,28 @@
+// THIS FILE IS MANAGED BY AN AUTOMATED WORKFLOW
+
+// Required packages:
+// 'eslint-config-prettier'
+// 'eslint-plugin-deprecation'
+// 'eslint-plugin-import'
+// 'eslint-plugin-jest'
+// 'eslint-plugin-unused-imports'
+// 'eslint'
+// 'prettier-plugin-packagejson'
+// 'prettier'
+
 module.exports = {
   env: {
     browser: true,
     commonjs: true,
     es2021: true,
   },
-  plugins: ['deprecation', 'import'],
-  extends: 'eslint:recommended',
-  parser: 'esprima',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
+  plugins: ['import', 'prettier'],
+  extends: ['plugin:prettier/recommended', 'eslint:recommended'],
+  root: true,
   rules: {
     quotes: ['error', 'single', { avoidEscape: true }],
     'comma-dangle': ['error', 'always-multiline'],
@@ -26,14 +38,16 @@ module.exports = {
     'space-before-blocks': 'error',
     curly: ['error', 'multi-line', 'consistent'],
     'no-bitwise': ['error'],
+    'no-console': 0,
     'no-trailing-spaces': ['error'],
     'no-duplicate-imports': ['error'],
     'no-shadow': 'off',
     'no-use-before-define': 'off',
+    'import/order': 'error',
+    'prettier/prettier': 'error',
     'max-classes-per-file': ['error', 3],
+    'no-debugger': 'error',
     'no-underscore-dangle': 'off',
     'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
-    indent: ['error', 2],
-    'max-params': ['error', 3],
   },
-}
+};
