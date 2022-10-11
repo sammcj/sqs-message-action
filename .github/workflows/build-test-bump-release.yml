@@ -13,14 +13,14 @@ permissions:
 
 jobs:
   build-test-publish:
-    timeout-minutes: 15
+    timeout-minutes: 10
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
       - uses: actions/setup-node@969bd2663942d722d85b6a8626225850c2f7be4b # tag=v3
         name: Set up Node.js
         with:
-          node-version: ${{ .nvmrc }}
+          node-version-file: ".nvmrc"
 
       # Build
       - name: "Install dependencies and build"
@@ -33,44 +33,6 @@ jobs:
       # TODO: Write tests 😅🙈
       # - name: "Run tests"
       #   run: npm test
-      - name: Start LocalStack for tests
-        run: |
-          # install LocalStack cli and awslocal awscli
-          pip install localstack awscli-local awscli --upgrade >> $GITHUB_STEP_SUMMARY
-          # Make sure to pull the latest version of the image
-          docker pull localstack/localstack
-          # Start LocalStack in the background
-          localstack start -d >> $GITHUB_STEP_SUMMARY
-          # Wait 30 seconds for the LocalStack container to become ready before timing out
-          echo "Waiting for LocalStack startup..."
-          localstack wait -t 30
-          echo "Startup complete"
-
-      - name: Create the SQS queue
-        run: |
-          awslocal --endpoint-url=http://localhost:4566 sqs create-queue --queue-name "sqs-message-action-dlq.fifo" \
-          --region "ap-southeast-2" --attributes FifoQueue=true,ContentBasedDeduplication=true >> $GITHUB_STEP_SUMMARY
-
-      - name: create the localstack aws cli profile
-        run: |
-          mkdir -p ~/.aws
-          cat <<EOF > ~/.aws/config
-          [profile localstack]
-          region = ap-southeast-2
-          aws_access_key_id = test
-          aws_secret_access_key = test
-          EOF
-
-      - name: "Test the action with localstack"
-        run: |
-          AWS_PROFILE="localstack" \
-          REGION="ap-southeast-2" \
-          SQS_URL="http://localhost:4566/000000000000/my-test-queue.fifo" \
-          MESSAGE='{"foo": "bar"}' \
-          MESSAGE_GROUP_ID="12345" \
-          STRINGIFY_MESSAGE="true" \
-          MESSAGE_ATTRIBUTES=<localstack/test-sqs-message-attributes.json \
-          node index.js >> $GITHUB_STEP_SUMMARY
 
       # Bump version
       - name: Bump version and push tag

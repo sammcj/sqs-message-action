@@ -74,7 +74,7 @@ jobs:
 
 - TODO: Add unit tests
 
-You can use localstack to provide a local SQS queue and run the action locally optionally using [act](https://github.com/nektos/act).
+You can use localstack to provide a local SQS queue and run the action locally.
 
 ```shell
 cd localstack
