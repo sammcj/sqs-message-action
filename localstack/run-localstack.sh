@@ -7,8 +7,6 @@ set -euo pipefail
 echo "starting localstack"
 docker compose up -d
 
-echo "configuring secret manager"
-echo "==================="
 LOCALSTACK_HOST="localhost"
 AWS_REGION="ap-southeast-2"
 PROJECT_NAME="sqs-message-action"
