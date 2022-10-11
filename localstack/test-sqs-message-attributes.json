@@ -1,0 +1,8 @@
+{
+  "test": {
+    "stringValue": "123",
+    "stringListValues": [],
+    "binaryListValues": [],
+    "dataType": "String"
+  }
+}

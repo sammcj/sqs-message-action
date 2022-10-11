@@ -20,6 +20,15 @@ inputs:
     description: "SQS Message Group ID"
     required: false
     type: string
+  stringify-message:
+    description: "Do you want to stringify the message?"
+    required: false
+    type: boolean
+outputs:
+  message-body:
+    description: "SQS Message body used for message"
+  sqs-url:
+    description: "SQS URL used for message"
 runs:
   using: "node16"
   main: "index.js"
