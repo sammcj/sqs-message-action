@@ -319,12 +319,10 @@ AWS.EventListeners = {
     });
 
     add('ERROR', 'error', function ERROR(err, resp) {
-      var errorCodeMapping = resp.request.service.api.errorCodeMapping;
-      if (errorCodeMapping && err && err.code) {
-        var mapping = errorCodeMapping[err.code];
-        if (mapping) {
-          resp.error.code = mapping.code;
-        }
+      var headers = resp.httpResponse.headers;
+      var queryErrorCode = headers ? headers['x-amzn-query-error'] : undefined;
+      if (queryErrorCode) {
+        resp.error.code = queryErrorCode.split(';')[0];
       }
     }, true);
 
@@ -678,6 +676,7 @@ AWS.EventListeners = {
     add('BUILD', 'build', svc.buildRequest);
     add('EXTRACT_DATA', 'extractData', svc.extractData);
     add('EXTRACT_ERROR', 'extractError', svc.extractError);
+    add('UNSET_CONTENT_LENGTH', 'afterBuild', svc.unsetContentLength);
   }),
 
   RestXml: new SequentialExecutor().addNamedListeners(function(add) {
