@@ -31,4 +31,4 @@ outputs:
     description: "SQS URL used for message"
 runs:
   using: "node16"
-  main: "index.js"
+  main: "dist/index.js"
