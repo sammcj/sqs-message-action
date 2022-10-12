@@ -104,6 +104,7 @@ node index.js
 This should return output such as:
 
 # pragma: allowlist nextline secret
+
 ```json
 ::set-output name=message-body::"{\"foo\": \"bar\"}"
 ::set-output name=queue-url::
