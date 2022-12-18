@@ -28,7 +28,7 @@ jobs:
     timeout-minutes: 15
     if: inputs.purge-obsoletes == true
     steps:
-        - uses: otto-contentfactory/purge-workflow-runs@v1
+        - uses: otto-contentfactory/purge-workflow-runs@926e8f444eae1fbb3c80f86391441703e58bd13d # v1
           with:
             token: ${{ inputs.github-token || secrets.GITHUB_TOKEN }}
 
@@ -37,7 +37,7 @@ jobs:
     timeout-minutes: 15
     if: inputs.delete-disabled == true
     steps:
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@d556feaca394842dc55e4734bf3bb9f685482fa0 # v6
         with:
           github-token: ${{ inputs.github-token || secrets.GITHUB_TOKEN }}
           script: |
