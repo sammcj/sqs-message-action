@@ -1,0 +1,19 @@
+# This workflow is for use locally using [act](https://github.com/nektos/act).
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-tests-locally:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3
+        with:
+          path: "sqs-message-action"
+      - name: test action locally
+        uses: ./sqs-message-action
+        with:
+          sqs-url: "http://localhost:4566/000000000000/my-test-queue.fifo"
+          message: "this is a really cool sqs message"
+          message-group-id: "cool-message-group"
+          message-attributes: '{"foo": "bar"}'
